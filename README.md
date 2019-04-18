@@ -1,1 +1,1 @@
-# Simple_Vulnerable_Application
+# Simple_Vulnerable_Online_Bookstore_Application
