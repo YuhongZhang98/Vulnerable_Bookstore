@@ -1,7 +1,9 @@
 # Simple Vulnerable Online Bookstore Application
 
 Yuhong Zhang yz3385
+
 Zhong Zhu zz1424
+
 https://github.com/YuhongZhang98/Vulnerable_Bookstore
 
 ## Overview
