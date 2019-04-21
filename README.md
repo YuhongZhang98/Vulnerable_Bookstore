@@ -1,5 +1,9 @@
 # Simple Vulnerable Online Bookstore Application
 
+Yuhong Zhang yz3385
+Zhong Zhu zz1424
+https://github.com/YuhongZhang98/Vulnerable_Bookstore
+
 ## Overview
 
 Our simple bookstore application holds database entries of books, categorized as book-quantity-cost. There is minimal sanitation of user input; thus, there are many vulnerabilities in which a user can easily manipulate the back-end of our bookstore through the front-end. We are focusing on XSS (Cross-site scripting) and SQL injections with this small web application.
