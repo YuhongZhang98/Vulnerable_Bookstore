@@ -12,24 +12,15 @@ def index():
 def restock():
     return render_template('restock.html')
 
+@app.route('/added', methods=['POST'])
+def added():
+    g.db = connect_db()
+    name,quan,price = (request.form['name'],request.form['quantity'],request.form['price'])
+    curs = g.db.execute("""INSERT INTO textbooks(name, quantity, price) VALUES(?,?,?)""", (name, quan, price))
+    g.db.commit()
+    g.db.close()
+    return "<h1>ADDED!</h1>" + render_template('index.html')
 #API routes
-
-@app.route('/api/v1.0/storeAPI', methods=['GET', 'POST'])
-def storeapi():
-    if request.method == 'GET':
-        g.db = connect_db()
-        curs = g.db.execute("SELECT * FROM textbooks")
-        items = [{'items':[dict(name=row[0], quantity=row[1], price=row[2]) for row in curs.fetchall()]}]
-        g.db.close()
-        return jsonify(items+empls)
-
-    elif request.method == 'POST':
-        g.db = connect_db()
-        name,quan,price = (request.json['name'],request.json['quantity'],request.json['price'])
-        curs = g.db.execute("""INSERT INTO textbooks(name, quantity, price) VALUES(?,?,?)""", (name, quan, price))
-        g.db.commit()
-        g.db.close()
-        return jsonify({'status':'OK','name':name,'quantity':quan,'price':price})
 
 @app.route('/api/v1.0/storeAPI/<item>', methods=['GET'])
 def searchAPI(item):
@@ -37,7 +28,6 @@ def searchAPI(item):
     #curs = g.db.execute("SELECT * FROM shop_items WHERE name=?", item) #The safe way to actually get data from db
     curs = g.db.execute("SELECT * FROM textbooks WHERE name = '%s'" %item)
     results = [dict(name=row[0], quantity=row[1], price=row[2]) for row in curs.fetchall()]
-    print(results)
     g.db.close()
     return jsonify(results)
 

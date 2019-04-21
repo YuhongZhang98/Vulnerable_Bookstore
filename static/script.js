@@ -21,21 +21,4 @@ function search(){
     });
 }
 
-function addItem(){
-    var name = document.getElementById("itemName").value;
-    var quan = document.getElementById("itemquantity").value;
-    var price = document.getElementById("itemprice").value;
 
-    var dat = {'name':name, 'quantity':quan, 'price':price};
-
-    $.ajax('/api/v1.0/storeAPI',{
-        method: 'POST',
-        data: JSON.stringify(dat),
-        dataType: "json",
-        contentType: "application/json",
-    }).done(function(res){
-        $("#stat").html("Successfully Added");
-    }).fail(function(err){
-        $("#stat").html("Error Sending Request");
-    });
-}

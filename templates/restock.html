@@ -11,16 +11,12 @@
 <h1>Welcome To Safe Online Bookstore</h1>
 <h2>Add Textbooks To The Shop</h2><br>
 
-<form action="?" method="GET" onsubmit="addItem();return false;">
-	Name: <input type="text" id="itemName" value=""/> <br><br>
-	Quantity: <input type="text" id="itemQuantity" value=""/> <br><br>
-	Price: <input type="text" id="itemPrice" value=""/> <br><br>
+<form action="/added" method="POST">
+	Name: <input type="text" id="itemName" name="name" value=""/> <br><br>
+	Quantity: <input type="text" id="itemQuantity" name="quantity" value=""/> <br><br>
+	Price: <input type="text" id="itemPrice" name="price" value=""/> <br><br>
 	<input class="button" type="submit" value="Submit" />
 </form>
-
-<br><br>
-
-<p id="stat"></p>
 
 </div>
 {% endblock %}
