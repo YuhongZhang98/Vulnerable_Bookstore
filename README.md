@@ -19,7 +19,7 @@ In our application, a user can easily add malicious code to the database, such a
 
 We add a new item with a value of `<script>alert(xss!)</script>`. This script would normally create a popup window. However, the unsafe script is saved into the database and will be returned and ran if the book is searched up. Our app does not sanitize nor check the type of input, not mentiong other secure code practices. 
 
-![xssattack](img/xss.png)
+![xssattack](img/XSS.png)
 
 Once this user input is submitted, we see the results of the injection when searching for the malicious textbook "CS1337".
 
