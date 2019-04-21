@@ -17,14 +17,18 @@ In our application, a user can easily add malicious code to the database, such a
 
 ![xsspre](img/preXSS.png)
 
-We add a new item with a value of `<script>alert(xss!)</script>`. This would normally create a popup window. However, the unsafe script is saved into the database and will be returned if the book is searched up. Thus the database will run this script! Our app does not sanitize nor check the type of input, among other secure code practices. 
+We add a new item with a value of `<script>alert(xss!)</script>`. This script would normally create a popup window. However, the unsafe script is saved into the database and will be returned and ran if the book is searched up. Our app does not sanitize nor check the type of input, not mentiong other secure code practices. 
 
-TODO: Add result of attack here
+![xssattack](img/xss.png)
+
+Once this user input is submitted, we see the results of the injection when searching for the malicious textbook "CS1337".
+
+![postxss](img/postXSS.png)
 
 
 ## SQLi Example
 
-A user can easily maliciously manipulate the input forms to gain privileged access to the database; thus, being able to read and write things they aren't supposed to. This is because our application reads the input as actual code! If we input:
+A user can easily maliciously manipulate the input forms to gain privileged access to the database; thus, being able to read and write things they aren't supposed to. If we input:
 `CS4753' UNION SELECT 1,2,3 from sqlite_master WHERE type="table"; --`
 
 ![postsqli](img/postSQLi.png)
