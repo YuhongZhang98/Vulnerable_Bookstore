@@ -17,7 +17,7 @@ In our application, a user can easily add malicious code to the database, such a
 
 ![xsspre](img/preXSS.png)
 
-We add a new item with a value of `<script>alert(xss!)</script>`. This script would normally create a popup window. However, the unsafe script is saved into the database and will be returned and ran if the book is searched up. Our app does not sanitize nor check the type of input, not mentiong other secure code practices. 
+We add a new item with a value of `<script>alert(xss!)</script>`. This script would normally create a popup window. However, the unsafe script is saved into the database and will be returned and ran if the book is searched up. Our app does not sanitize nor check the type of input, not mentioning other secure code practices. 
 
 ![xssattack](img/XSS.png)
 
@@ -30,8 +30,19 @@ Once this user input is submitted, we see the results of the injection when sear
 
 A user can easily maliciously manipulate the input forms to gain privileged access to the database; thus, being able to read and write things they aren't supposed to. If we input:
 `CS4753' UNION SELECT 1,2,3 from sqlite_master WHERE type="table"; --`
-
 ![postsqli](img/postSQLi.png)
 
-We see that we have injected an entry into the database with the name 1, quantity 2, and price 3 - simply from general user input. Thus, our application is vulnerable to malicious code since code is not checked or sanitized.
+We see that we have injected an entry into the database with the name 1, quantity 2, and price 3 - simply from general user input.
 
+
+If we input: `CS4753' UNION SELECT name,sql,3 from sqlite_master WHERE type="table"; --`, we discover the SQL info names of our database:
+![secondsqli](img/sqli2.png)
+
+
+If we input: `CS4753' UNION SELECT quantity, price,3 from textbooks;--`, we discover ALL entries in our database, as well as set the price of everything to 3:
+![thirdsqli](img/sqli3.png)
+
+
+## Conclusion
+
+Our web app is very vulnerable and has lots of flaws. We focused on the XSS and SQLi attacks in this lab, but there are many other possibilities. This app demonstrates how dangerous an insecure application can be in the wrong hands and code.
